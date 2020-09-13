@@ -74,6 +74,7 @@ namespace Entidades
             //Utilizo funcion Math.Floor para redondear para abajo decimal con ,
              double numeroDecimal = Math.Floor(numString.numero);
 
+            //string Auxililar para armar el binario
             string binario = string.Empty;
 
             //Valido antes de entrar al while que el nro sea mayor a 0
@@ -125,14 +126,12 @@ namespace Entidades
         {
             double resultado = n1.numero - n2.numero;
             return resultado;
-
         }
 
         public static double operator *(Numero n1, Numero n2)
         {
             double resultado = n1.numero * n2.numero;
             return resultado;
-
         }
 
         public static double operator /(Numero n1, Numero n2)
@@ -145,14 +144,12 @@ namespace Entidades
                 resultado = n1.numero / n2.numero;
 
             return resultado;
-
         }
 
         public static double operator +(Numero n1, Numero n2)
         {
             double resultado = n1.numero + n2.numero;
             return resultado;
-
         }
     }
 }

@@ -20,6 +20,10 @@ namespace MiCalculadora
 
         private void btnOperar_Click(object sender, EventArgs e)
         {
+            //Valido que los botones se habiliten una vez que el lblresultado tenga un valor
+            btnConvertirABinario.Enabled = true;
+            btnConvertirADecimal.Enabled = true;
+
             //dado que la clase nro no me permite crear otro método operar debo instanciar el 
             //objeto numero desde el form
 
@@ -32,11 +36,11 @@ namespace MiCalculadora
                 MessageBox.Show("Debe completar todos los campos para la operación");
         }
 
-        private double Operar(string numer1,string numero2, string operador)
+        private double Operar(string numero1,string numero2, string operador)
         {
-            Numero numerotxt1 = new Numero(txtNumero1.Text);
+            Numero numerotxt1 = new Numero(numero1);
 
-            Numero numerotxt2 = new Numero(txtNumero2.Text);
+            Numero numerotxt2 = new Numero(numero2);
 
             return Calculadora.Operar(numerotxt1, numerotxt2, operador);
         }
@@ -55,10 +59,14 @@ namespace MiCalculadora
 
         private void Limpiar()
         {
+            //Limpiar no solo resetea los textos y valores sino tb los btns de conversion
             lblResultado.ResetText();
             txtNumero1.Clear();
             txtNumero2.Clear();
             cmbOperador.ResetText();
+
+            btnConvertirABinario.Enabled = false;
+            btnConvertirADecimal.Enabled = false;
 
         }
 
@@ -83,6 +91,13 @@ namespace MiCalculadora
             string labelADecimal = num.BinarioDecimal(lblResultado.Text);
 
             lblResultado.Text = labelADecimal;
+        }
+
+        //Se que no se pidió sin embargo me resultó una buena validación para evitar errores
+        private void FormCalculadora_Load(object sender, EventArgs e)
+        {
+            btnConvertirABinario.Enabled = false;
+            btnConvertirADecimal.Enabled = false;
         }
     }
 }
